@@ -2,6 +2,14 @@
 
 A small Python toolkit for reducing Outlook spam without reading message or invitation content. It combines metadata-only calendar invitation cleanup, narrow Groups-invitation mail handling, and an optional deterministic sender filter.
 
+## Why this exists
+
+This project started with a familiar frustration: Outlook’s built-in filtering was missing two different kinds of unwanted mail. Outlook Groups invitations were appearing as calendar events even after their senders were blocked, while inbox spam was arriving from plausible display names paired with suspicious-looking addresses. Ordinary Outlook rules could block known senders, but could not express the inverse rule that mattered here: keep mail from people and senders already trusted, and carefully handle suspicious or unknown senders.
+
+The design was shaped as much by privacy as by the spam itself. Because an attacker controls the content of spam, handing message text to an AI model would create an unnecessary prompt-injection path into a mailbox and calendar. These tools instead use deterministic rules over the smallest useful metadata, avoid reading subjects and bodies, and favour reversible actions with fail-closed safeguards. AI helped develop and test the software; it is not in the runtime decision path.
+
+The original motivation, implementation trade-offs, and lessons learned are in [A sender-based spam filter for Outlook.com that never reads the email](https://www.gr8ful.dev/2026/10/18/outlook-sender-spam-filter.html).
+
 This repository is a prototype, not a one-click installer. Review the policies and configuration before enabling scheduled jobs. The calendar guard is dry-run by default; sender filtering is off by default. Group removal is a separate browser automation that requires explicit installation and sign-in.
 
 ## Components
@@ -69,4 +77,4 @@ Tests use synthetic data and mock Graph, browser, and filesystem interactions. T
 
 ## Release status
 
-Prototype; setup, policy review, platform-specific installation, a formal secret scan, and a license decision are still required before publication or reuse. No license is granted by this repository yet.
+Prototype; setup, policy review, platform-specific installation, and a dedicated secret scan are still required before enabling it broadly. This repository is licensed under the MIT License; see [LICENSE](LICENSE).
