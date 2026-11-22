@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>org.example.outlook-tools.calendar-guard</string>
+  <key>ProcessType</key><string>Background</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/PATH/TO/outlook-tools/.venv/bin/python</string>
+    <string>/PATH/TO/outlook-tools/bin/run_calendar_guard.py</string>
+  </array>
+  <key>WorkingDirectory</key><string>/PATH/TO/outlook-tools</string>
+  <key>StartInterval</key><integer>60</integer>
+  <key>RunAtLoad</key><false/>
+  <key>StandardOutPath</key><string>/PATH/TO/PRIVATE/STATE/calendar-guard/job.log</string>
+  <key>StandardErrorPath</key><string>/PATH/TO/PRIVATE/STATE/calendar-guard/job-error.log</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>OUTLOOK_PERSONAL_USER</key><string>owner@example.com</string>
+    <key>OUTLOOK_PERSONAL_GRAPH_CLIENT_ID</key><string>SET_LOCALLY</string>
+    <key>OUTLOOK_TOOLS_STATE_DIR</key><string>/PATH/TO/PRIVATE/STATE</string>
+    <key>OUTLOOK_HISTORY_CUTOFF</key><string>SET_LOCALLY_BEFORE_INSTALL</string>
+    <key>OUTLOOK_TIMEZONE</key><string>Etc/UTC</string>
+  </dict>
+</dict>
+</plist>
